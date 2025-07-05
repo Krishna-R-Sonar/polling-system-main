@@ -10,10 +10,11 @@ const useSocket = () => {
     if (!socketRef.current) {
       // Use environment variable for backend URL
       const serverUrl = process.env.NODE_ENV === 'production' 
-        ? process.env.REACT_APP_API_URL 
+        ? process.env.REACT_APP_API_URL || 'https://polling-system-main.onrender.com'
         : 'http://localhost:5001';
 
       console.log('useSocket: Connecting to', serverUrl);
+      console.log('useSocket: REACT_APP_API_URL=', process.env.REACT_APP_API_URL);
 
       socketRef.current = io(serverUrl, {
         transports: ['websocket', 'polling'],

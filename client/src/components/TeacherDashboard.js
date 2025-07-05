@@ -21,7 +21,17 @@ const TeacherDashboard = ({ currentPoll, students, pollResults, onCreatePoll, on
 
   const fetchPollHistory = async () => {
     try {
-      const response = await fetch('/api/poll-history');
+      const apiUrl = process.env.NODE_ENV === 'production' 
+        ? process.env.REACT_APP_API_URL || 'https://polling-system-main.onrender.com'
+        : 'http://localhost:5001';
+      const url = `${apiUrl}/api/poll-history`;
+      console.log('Fetching poll history from:', url);
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+      }
+
       const history = await response.json();
       setPollHistory(history);
       setShowHistory(true);

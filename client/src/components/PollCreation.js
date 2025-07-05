@@ -1,3 +1,4 @@
+// polling-system-main/client/src/components/PollCreation.js
 import React, { useState } from 'react';
 
 const PollCreation = ({ onCreatePoll, onCancel }) => {

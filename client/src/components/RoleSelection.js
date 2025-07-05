@@ -1,3 +1,4 @@
+// polling-system-main/client/src/components/RoleSelection.js
 import React, { useState } from 'react';
 
 const RoleSelection = ({ onRoleSelect }) => {

@@ -1,15 +1,15 @@
+// polling-system-main/server/server.js
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
-const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "*",
+    origin: ["https://polling-system-main-5rcq.vercel.app", "http://localhost:3000"],
     methods: ["GET", "POST"],
     allowedHeaders: ["*"],
     credentials: false
@@ -18,15 +18,10 @@ const io = socketIo(server, {
 
 // Middleware
 app.use(cors({
-  origin: "*",
+  origin: "https://polling-system-main-5rcq.vercel.app",
   credentials: false
 }));
 app.use(express.json());
-
-// Serve static files from React build (only in production)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
 
 // In-memory storage (in production, use a database)
 let currentPoll = null;
@@ -36,7 +31,6 @@ let teacherSocketId = null;
 
 // Poll timer
 let pollTimer = null;
-const POLL_TIMEOUT = 60000; // 60 seconds
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
@@ -235,13 +229,6 @@ function endPoll() {
 app.get('/api/poll-history', (req, res) => {
   res.json(pollHistory);
 });
-
-// Serve React app for all other routes (only in production)
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
-}
 
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => {

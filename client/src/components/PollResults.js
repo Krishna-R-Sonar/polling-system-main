@@ -1,3 +1,4 @@
+// polling-system-main/client/src/components/PollResults.js
 import React from 'react';
 
 const PollResults = ({ poll, results, isTeacher = false, showWaitMessage = false }) => {

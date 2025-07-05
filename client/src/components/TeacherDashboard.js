@@ -1,3 +1,4 @@
+// polling-system-main/client/src/components/TeacherDashboard.js
 import React, { useState } from 'react';
 import PollCreation from './PollCreation';
 import PollResults from './PollResults';

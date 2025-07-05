@@ -1,3 +1,4 @@
+// polling-system-main/client/src/components/StudentNameEntry.js
 import React, { useState } from 'react';
 
 const StudentNameEntry = ({ onJoin }) => {

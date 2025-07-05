@@ -1,3 +1,4 @@
+// polling-system-main/client/src/components/StudentInterface.js
 import React, { useState, useEffect } from 'react';
 import StudentNameEntry from './StudentNameEntry';
 import PollResults from './PollResults';

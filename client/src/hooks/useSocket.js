@@ -1,3 +1,4 @@
+// polling-system-main/client/src/hooks/useSocket.js
 import { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 
@@ -7,8 +8,10 @@ const useSocket = () => {
 
   useEffect(() => {
     if (!socketRef.current) {
-      // Connect to server
-      const serverUrl = process.env.NODE_ENV === 'production' ? window.location.origin : 'http://localhost:5001';
+      // Use environment variable for backend URL
+      const serverUrl = process.env.NODE_ENV === 'production' 
+        ? process.env.REACT_APP_API_URL 
+        : 'http://localhost:5001';
 
       console.log('useSocket: Connecting to', serverUrl);
 

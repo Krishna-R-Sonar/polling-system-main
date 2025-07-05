@@ -1,3 +1,4 @@
+// polling-system-main/client/src/App.js
 import React, { useState, useEffect } from 'react';
 import useSocket from './hooks/useSocket';
 import RoleSelection from './components/RoleSelection';
